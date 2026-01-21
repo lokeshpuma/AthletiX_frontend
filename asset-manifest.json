@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AthletiX/static/css/main.7ae62479.css",
+    "main.js": "/AthletiX/static/js/main.0cbaca28.js",
+    "index.html": "/AthletiX/index.html",
+    "main.7ae62479.css.map": "/AthletiX/static/css/main.7ae62479.css.map",
+    "main.0cbaca28.js.map": "/AthletiX/static/js/main.0cbaca28.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7ae62479.css",
+    "static/js/main.0cbaca28.js"
+  ]
+}
