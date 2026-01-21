@@ -28,7 +28,11 @@ import "./style.scss";
 import { useContext, useEffect } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
+import { HashRouter } from "react-router-dom";
 
+<HashRouter>
+  <App />
+</HashRouter>
 function App() {
   const {currentUser} = useContext(AuthContext);
   const { darkMode } = useContext(DarkModeContext);
