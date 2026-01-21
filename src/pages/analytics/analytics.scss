@@ -1,0 +1,126 @@
+@import "../../style.scss";
+
+.analytics {
+  @include themify($themes) {
+    padding: 20px 70px;
+
+    .container {
+      .title {
+        color: themed("textColor");
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 28px;
+      }
+
+      .content {
+        padding: 20px;
+        background-color: themed("bgSoft");
+        border-radius: 10px;
+        color: themed("textColor");
+        
+        .report-summary {
+          background-color: themed("bg");
+          padding: 15px;
+          border-radius: 8px;
+          margin-bottom: 30px;
+          border-left: 4px solid #8884d8;
+          
+          h2 {
+            margin-top: 0;
+            border-bottom: none;
+            padding-bottom: 5px;
+          }
+          
+          p {
+            margin-bottom: 0;
+          }
+        }
+        
+        h2 {
+          margin: 20px 0;
+          border-bottom: 1px solid themed("border");
+          padding-bottom: 10px;
+          font-size: 22px;
+        }
+        
+        h3 {
+          margin: 15px 0;
+          color: themed("textColorSoft");
+          font-size: 18px;
+        }
+        
+        .chart-container {
+          margin-bottom: 30px;
+          padding: 15px;
+          background-color: themed("bg");
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          
+          h3 {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+        }
+        
+        .insights-container, .recommendations-container {
+          margin-bottom: 30px;
+          
+          .insight-card {
+            background-color: themed("bg");
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+            h3 {
+              border-bottom: 1px solid themed("border");
+              padding-bottom: 8px;
+              margin-bottom: 12px;
+            }
+            
+            ul, ol {
+              padding-left: 20px;
+            }
+            
+            li {
+              margin: 5px 0;
+            }
+            
+            p {
+              font-weight: 500;
+              margin-bottom: 8px;
+            }
+          }
+        }
+        
+        .recommendations-container {
+          ol {
+            padding-left: 20px;
+            
+            li {
+              margin: 10px 0;
+              line-height: 1.4;
+            }
+          }
+        }
+        
+        .privacy-notice {
+          background-color: themed("bg");
+          padding: 15px;
+          border-radius: 8px;
+          margin-top: 20px;
+          border-left: 4px solid #0088FE;
+          
+          h3 {
+            margin-top: 0;
+          }
+          
+          p {
+            font-size: 14px;
+            opacity: 0.9;
+          }
+        }
+      }
+    }
+  }
+}

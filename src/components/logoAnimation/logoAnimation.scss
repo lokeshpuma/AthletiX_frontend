@@ -1,0 +1,211 @@
+@import "../../style.scss";
+
+.logo-animation {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 150px;
+  overflow: hidden;
+  
+  .logo-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    
+    .sport-icon {
+      position: absolute;
+      animation: fall linear infinite;
+      
+      @include themify($themes) {
+        opacity: if(themed("bg") == "#222", 0.7, 0.5);
+      }
+      
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  
+  .logo-text {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .letter-container {
+      position: relative;
+      display: inline-block;
+      height: 30px;
+      
+      .logo-letter {
+        display: inline-block;
+        font-size: 1.4rem;
+        font-weight: bold;
+        transition: all 0.3s;
+        transform-origin: center;
+        position: relative;
+        z-index: 2;
+        
+        @include themify($themes) {
+          color: themed("textColor");
+          text-shadow: 0 0 10px rgba(themed("bg"), 0.8);
+        }
+        
+        &:hover {
+          opacity: 0;
+          transform: scale(0);
+        }
+      }
+      
+      .letter-icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        opacity: 0;
+        transform: scale(0);
+        transition: all 0.3s;
+        
+        svg {
+          width: 20px;
+          height: 20px;
+          
+          @include themify($themes) {
+            filter: if(themed("bg") == "#222", brightness(1.2), none);
+          }
+        }
+        
+        &.basketball svg { color: #FF5722; }
+        &.soccer svg { color: #4CAF50; }
+        &.tennis svg { color: #FFEB3B; }
+        &.baseball svg { color: #2196F3; }
+        &.volleyball svg { color: #9C27B0; }
+        &.hockey svg { color: #607D8B; }
+        &.cricket svg { color: #3F51B5; }
+        &.football svg { color: #795548; }
+        &.fitness svg { color: #9C27B0; }
+        &.golf svg { color: #8BC34A; }
+      }
+      
+      &:hover {
+        .logo-letter {
+          opacity: 0;
+          transform: scale(0);
+        }
+        
+        .letter-icon {
+          opacity: 1;
+          transform: scale(1) rotate(360deg);
+        }
+      }
+    }
+    
+    span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #2078f4, #4CAF50, #FF5722, #9C27B0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
+      display: none; /* Hide the original span since we're now using individual letters */
+      
+      @include themify($themes) {
+        text-shadow: 0 0 10px rgba(themed("bg"), 0.8);
+      }
+    }
+  }
+  
+  &:hover {
+    .sport-icon {
+      animation-play-state: paused;
+    }
+    
+    .logo-text .letter-container {
+      animation: bounce 0.5s;
+      
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.05}s;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100%) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(250%) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes transform-to-icon {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+@keyframes transform-from-icon {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(360deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(360deg);
+  }
+}
+ 

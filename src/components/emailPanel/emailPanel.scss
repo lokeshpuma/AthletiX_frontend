@@ -1,0 +1,415 @@
+@import "../../style.scss";
+
+.email-panel {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  width: 600px;
+  height: 500px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  
+  @include themify($themes) {
+    background-color: themed("bg");
+    color: themed("textColor");
+    border: 1px solid themed("border");
+    box-shadow: 0 0 15px rgba(0, 0, 0, if(themed("textColor") == "whitesmoke", 0.4, 0.2));
+    border-radius: 10px;
+  }
+  
+  .email-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    
+    @include themify($themes) {
+      border-bottom: 1px solid themed("border");
+    }
+    
+    h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+    
+    .email-actions {
+      display: flex;
+      gap: 10px;
+      
+      .action-icon {
+        cursor: pointer;
+        font-size: 1rem;
+        
+        &:hover {
+          color: #2078f4;
+        }
+      }
+    }
+  }
+  
+  .email-content {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    
+    .email-sidebar {
+      width: 150px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      
+      @include themify($themes) {
+        border-right: 1px solid themed("border");
+      }
+      
+      .compose-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        padding: 8px;
+        border-radius: 20px;
+        background-color: #2078f4;
+        color: white;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        font-size: 0.85rem;
+        
+        &:hover {
+          background-color: #1862c6;
+        }
+      }
+      
+      .email-folders {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        
+        .folder {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 8px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+          font-size: 0.85rem;
+          
+          &:hover {
+            @include themify($themes) {
+              background-color: themed("bgSoft");
+            }
+          }
+          
+          &.active {
+            @include themify($themes) {
+              background-color: themed("bgSoft");
+              font-weight: bold;
+            }
+          }
+          
+          .unread-count, .count {
+            background-color: #2078f4;
+            color: white;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            padding: 0 4px;
+          }
+        }
+      }
+    }
+    
+    .email-main {
+      flex: 1;
+      overflow-y: auto;
+      
+      .email-list {
+        .email-item {
+          display: flex;
+          padding: 10px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+          
+          @include themify($themes) {
+            border-bottom: 1px solid themed("border");
+          }
+          
+          &:hover {
+            @include themify($themes) {
+              background-color: themed("bgSoft");
+            }
+          }
+          
+          &.unread {
+            font-weight: bold;
+            
+            @include themify($themes) {
+              background-color: rgba(32, 120, 244, if(themed("bg") == "#222", 0.1, 0.05));
+            }
+          }
+          
+          .email-star {
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            
+            @include themify($themes) {
+              color: themed("textColorSoft");
+            }
+            
+            .starred {
+              color: #f4c520;
+            }
+            
+            svg {
+              font-size: 1rem;
+            }
+          }
+          
+          .email-details {
+            flex: 1;
+            
+            h4 {
+              margin: 0 0 3px 0;
+              font-size: 0.9rem;
+            }
+            
+            .email-subject {
+              margin-bottom: 3px;
+              font-size: 0.85rem;
+            }
+            
+            .email-preview {
+              font-size: 0.8rem;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              
+              @include themify($themes) {
+                color: themed("textColorSoft");
+              }
+            }
+          }
+          
+          .email-date {
+            font-size: 0.75rem;
+            min-width: 60px;
+            text-align: right;
+            
+            @include themify($themes) {
+              color: themed("textColorSoft");
+            }
+          }
+        }
+        
+        .empty-state {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 150px;
+          font-size: 0.9rem;
+          
+          @include themify($themes) {
+            color: themed("textColorSoft");
+          }
+        }
+      }
+      
+      .email-detail {
+        padding: 20px;
+        
+        .email-detail-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 15px;
+          
+          .email-detail-subject {
+            font-size: 1.4rem;
+            font-weight: bold;
+          }
+          
+          .email-detail-actions {
+            display: flex;
+            gap: 10px;
+            
+            .action-icon {
+              cursor: pointer;
+              font-size: 1.2rem;
+              
+              &:hover {
+                color: #2078f4;
+              }
+            }
+          }
+        }
+        
+        .email-detail-info {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 20px;
+          padding-bottom: 10px;
+          
+          @include themify($themes) {
+            border-bottom: 1px solid themed("border");
+          }
+          
+          .sender-info {
+            font-size: 0.9rem;
+          }
+          
+          .email-date {
+            font-size: 0.8rem;
+            
+            @include themify($themes) {
+              color: themed("textColorSoft");
+            }
+          }
+        }
+        
+        .email-detail-body {
+          line-height: 1.6;
+          margin-bottom: 30px;
+        }
+        
+        .email-reply {
+          margin-top: 20px;
+          padding-top: 20px;
+          
+          @include themify($themes) {
+            border-top: 1px solid themed("border");
+          }
+          
+          textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            resize: vertical;
+            
+            @include themify($themes) {
+              background-color: themed("bgSoft");
+              border: 1px solid themed("border");
+              color: themed("textColor");
+            }
+          }
+          
+          .reply-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background-color: #2078f4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            
+            &:hover {
+              background-color: #1862c6;
+            }
+          }
+        }
+      }
+      
+      .compose-email {
+        padding: 20px;
+        
+        h3 {
+          margin-top: 0;
+          margin-bottom: 20px;
+          font-size: 1.2rem;
+        }
+        
+        .compose-field {
+          display: flex;
+          margin-bottom: 15px;
+          align-items: center;
+          
+          label {
+            width: 80px;
+            font-weight: bold;
+          }
+          
+          input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 4px;
+            
+            @include themify($themes) {
+              background-color: themed("bgSoft");
+              border: 1px solid themed("border");
+              color: themed("textColor");
+            }
+          }
+        }
+        
+        .compose-body {
+          margin-bottom: 20px;
+          
+          textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            
+            @include themify($themes) {
+              background-color: themed("bgSoft");
+              border: 1px solid themed("border");
+              color: themed("textColor");
+            }
+          }
+        }
+        
+        .compose-actions {
+          display: flex;
+          gap: 10px;
+          
+          button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            
+            &.send-btn {
+              background-color: #2078f4;
+              color: white;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              
+              &:hover {
+                background-color: #1862c6;
+              }
+            }
+            
+            &.discard-btn {
+              @include themify($themes) {
+                background-color: themed("bgSoft");
+                color: themed("textColor");
+                border: 1px solid themed("border");
+                
+                &:hover {
+                  background-color: darken(themed("bgSoft"), 5%);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+} 

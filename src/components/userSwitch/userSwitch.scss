@@ -1,0 +1,174 @@
+@import "../../style.scss";
+
+.user-switch {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  width: 240px;
+  z-index: 1000;
+  overflow: hidden;
+  
+  @include themify($themes) {
+    background-color: themed("bg");
+    color: themed("textColor");
+    border: 1px solid themed("border");
+    box-shadow: 0 0 15px rgba(0, 0, 0, if(themed("textColor") == "whitesmoke", 0.4, 0.2));
+    border-radius: 10px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    
+    @include themify($themes) {
+      border-bottom: 1px solid themed("border");
+    }
+    
+    h3 {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    
+    .close-icon {
+      cursor: pointer;
+      font-size: 1rem;
+      
+      &:hover {
+        color: #2078f4;
+      }
+    }
+  }
+  
+  .current-user {
+    padding: 10px;
+    
+    @include themify($themes) {
+      border-bottom: 1px solid themed("border");
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      
+      .details {
+        h4 {
+          margin: 0 0 3px 0;
+          font-size: 0.9rem;
+        }
+        
+        span {
+          font-size: 0.75rem;
+          
+          @include themify($themes) {
+            color: themed("textColorSoft");
+          }
+        }
+      }
+    }
+  }
+  
+  .alternate-accounts {
+    padding: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+    
+    @include themify($themes) {
+      border-bottom: 1px solid themed("border");
+    }
+    
+    .account-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      border-radius: 5px;
+      
+      &:hover {
+        @include themify($themes) {
+          background-color: themed("bgSoft");
+        }
+      }
+      
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      
+      .details {
+        h4 {
+          margin: 0 0 2px 0;
+          font-size: 0.85rem;
+        }
+        
+        span {
+          font-size: 0.7rem;
+          
+          @include themify($themes) {
+            color: themed("textColorSoft");
+          }
+        }
+      }
+    }
+  }
+  
+  .options {
+    padding: 8px;
+    
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+      font-size: 0.85rem;
+      
+      &:hover {
+        @include themify($themes) {
+          background-color: themed("bgSoftActive");
+        }
+      }
+      
+      .option-icon {
+        font-size: 1rem;
+        
+        @include themify($themes) {
+          color: themed("textColorSoft");
+        }
+      }
+      
+      &.logout {
+        margin-top: 5px;
+        padding-top: 8px;
+        
+        @include themify($themes) {
+          border-top: 1px solid themed("border");
+        }
+        
+        .option-icon {
+          color: #e74c3c;
+        }
+        
+        span {
+          color: #e74c3c;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+} 

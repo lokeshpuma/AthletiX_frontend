@@ -1,0 +1,321 @@
+@import "../../style.scss";
+
+.community {
+  @include themify($themes) {
+    padding: 20px 70px;
+
+    .container {
+      .title {
+        color: themed("textColor");
+        margin-bottom: 20px;
+        font-size: 28px;
+        text-align: center;
+      }
+
+      .discord-layout {
+        display: flex;
+        background-color: themed("bgSoft");
+        border-radius: 10px;
+        overflow: hidden;
+        height: calc(100vh - 180px);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        
+        .channels-sidebar {
+          width: 260px;
+          background-color: themed("bg");
+          border-right: 1px solid themed("border");
+          display: flex;
+          flex-direction: column;
+          
+          .channels-header {
+            padding: 15px;
+            border-bottom: 1px solid themed("border");
+            
+            h3 {
+              margin-bottom: 10px;
+              color: themed("textColor");
+              font-size: 18px;
+            }
+            
+            .join-discord-btn {
+              width: 100%;
+              padding: 8px 0;
+              background-color: #5865F2; // Discord color
+              color: white;
+              border: none;
+              border-radius: 4px;
+              font-weight: 500;
+              cursor: pointer;
+              
+              &:hover {
+                background-color: #4752c4;
+              }
+            }
+          }
+          
+          .channels-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 0;
+            
+            .channel-item {
+              padding: 8px 15px;
+              display: flex;
+              align-items: center;
+              color: themed("textColorSoft");
+              cursor: pointer;
+              border-radius: 4px;
+              margin: 0 5px;
+              
+              svg {
+                margin-right: 8px;
+                font-size: 18px;
+              }
+              
+              span {
+                flex: 1;
+              }
+              
+              .verified-icon {
+                color: #3498db;
+                font-size: 14px;
+              }
+              
+              &.active {
+                background-color: rgba(114, 137, 218, 0.1);
+                color: themed("textColor");
+                font-weight: 500;
+              }
+              
+              &.official {
+                color: #3498db;
+              }
+              
+              &:hover:not(.active) {
+                background-color: rgba(114, 137, 218, 0.05);
+                color: themed("textColor");
+              }
+            }
+          }
+          
+          .community-info {
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-top: 1px solid themed("border");
+            
+            h4 {
+              margin-bottom: 10px;
+              color: themed("textColor");
+              font-size: 15px;
+            }
+            
+            p {
+              font-size: 13px;
+              color: themed("textColorSoft");
+              line-height: 1.4;
+              margin-bottom: 10px;
+            }
+            
+            .hashtag {
+              font-weight: bold;
+              color: #3498db;
+            }
+            
+            .community-motto {
+              font-style: italic;
+              font-weight: 500;
+              margin-top: 10px;
+            }
+          }
+        }
+        
+        .chat-area {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          
+          .chat-header {
+            padding: 15px;
+            border-bottom: 1px solid themed("border");
+            display: flex;
+            align-items: center;
+            
+            h2 {
+              color: themed("textColor");
+              font-size: 20px;
+              margin-right: 10px;
+            }
+            
+            .official-badge {
+              background-color: #3498db;
+              color: white;
+              font-size: 12px;
+              padding: 2px 8px;
+              border-radius: 12px;
+              font-weight: 500;
+            }
+          }
+          
+          .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            
+            .channel-description {
+              background-color: rgba(52, 152, 219, 0.08);
+              border-radius: 6px;
+              padding: 15px;
+              margin-bottom: 20px;
+              
+              h3 {
+                color: themed("textColor");
+                margin-bottom: 8px;
+                font-size: 16px;
+              }
+              
+              p {
+                color: themed("textColorSoft");
+                font-size: 14px;
+                line-height: 1.4;
+              }
+            }
+            
+            .message-item {
+              display: flex;
+              margin-bottom: 20px;
+              padding: 5px 10px;
+              border-radius: 6px;
+              position: relative;
+              
+              &.official-message {
+                background-color: rgba(52, 152, 219, 0.05);
+              }
+              
+              &.pinned-message {
+                background-color: rgba(241, 196, 15, 0.05);
+              }
+              
+              .pin-icon {
+                position: absolute;
+                top: 5px;
+                right: 10px;
+                color: #f1c40f;
+                font-size: 14px;
+              }
+              
+              .message-avatar {
+                margin-right: 15px;
+                
+                img {
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  object-fit: cover;
+                }
+              }
+              
+              .message-content {
+                flex: 1;
+                
+                .message-header {
+                  margin-bottom: 5px;
+                  display: flex;
+                  align-items: center;
+                  
+                  .author-name {
+                    font-weight: 500;
+                    color: themed("textColor");
+                    margin-right: 5px;
+                  }
+                  
+                  .verified-icon {
+                    color: #3498db;
+                    font-size: 14px;
+                    margin-right: 5px;
+                  }
+                  
+                  .timestamp {
+                    font-size: 12px;
+                    color: #999;
+                  }
+                }
+                
+                .message-text {
+                  color: themed("textColor");
+                  line-height: 1.4;
+                  font-size: 14px;
+                }
+              }
+            }
+            
+            .empty-channel {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100%;
+              color: themed("textColorSoft");
+              font-style: italic;
+            }
+          }
+          
+          .message-input-area {
+            padding: 15px;
+            border-top: 1px solid themed("border");
+            
+            form {
+              display: flex;
+              
+              input {
+                flex: 1;
+                padding: 10px 15px;
+                border-radius: 4px;
+                border: 1px solid themed("border");
+                background-color: themed("bg");
+        color: themed("textColor");
+                
+                &:disabled {
+                  background-color: rgba(0, 0, 0, 0.05);
+                  cursor: not-allowed;
+                }
+                
+                &:focus {
+                  outline: none;
+                  border-color: #5865F2;
+                }
+              }
+              
+              button {
+                margin-left: 10px;
+                background-color: #5865F2;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                width: 40px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                &:disabled {
+                  background-color: #9da0c9;
+                  cursor: not-allowed;
+                }
+                
+                &:hover:not(:disabled) {
+                  background-color: #4752c4;
+                }
+              }
+            }
+            
+            .input-notice {
+              color: #e74c3c;
+              font-size: 12px;
+              margin-top: 5px;
+              font-style: italic;
+            }
+          }
+        }
+      }
+    }
+  }
+} 

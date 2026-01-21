@@ -1,0 +1,208 @@
+$themes: (
+  light: (
+    textColor: #000,
+    bg: white,
+    logo: darkblue,
+    bgSoft: #f6f3f3,
+    textColorSoft: #555,
+    border: lightgray,
+    primary: #2078f4,
+    bgSoftActive: #e3e9ff,
+    hoverColor: #f0f0f0,
+    cardBg: #ffffff,
+    successColor: #4CAF50,
+    warningColor: #FFC107,
+    errorColor: #e74c3c,
+    inputBg: #ffffff,
+    sportsAccent: #2078f4,
+  ),
+  dark: (
+    textColor: whitesmoke,
+    bg: #222,
+    logo: white,
+    bgSoft: #333,
+    textColorSoft: #aaa,
+    border: #444,
+    primary: #2078f4,
+    bgSoftActive: #2c3a6d,
+    hoverColor: #2d2d2d,
+    cardBg: #2d2d2d,
+    successColor: #5cb85c,
+    warningColor: #f0ad4e,
+    errorColor: #d9534f,
+    inputBg: #333,
+    sportsAccent: #3498db,
+  ),
+);
+
+@mixin themify($themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+@mixin mobile {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (max-width: 960px) {
+    @content;
+  }
+}
+
+// App Layout Styles
+.app-layout {
+  display: flex;
+  position: relative;
+  
+  .sidebar {
+    width: 240px;
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    z-index: 100;
+    
+    @include mobile {
+      display: none;
+    }
+    
+    @include tablet {
+      display: none;
+    }
+  }
+  
+  .left-sidebar {
+    left: 0;
+  }
+  
+  .right-sidebar {
+    right: 0;
+  }
+  
+  .main-content {
+    flex: 1;
+    margin-left: 240px;
+    margin-right: 240px;
+    width: calc(100% - 480px);
+    box-sizing: border-box;
+    min-height: calc(100vh - 70px);
+    position: relative;
+    overflow: hidden;
+    
+    @include mobile {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+    }
+    
+    @include tablet {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+    }
+  }
+}
+
+// Auth Layout Styles
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  @include themify($themes) {
+    background-color: themed("bg");
+    color: themed("textColor");
+    
+    // Style login/register forms for better dark mode compatibility
+    .auth-container {
+      background-color: themed("cardBg");
+      border: 1px solid themed("border");
+      box-shadow: 0 0 20px rgba(0, 0, 0, if(themed("bg") == "#222", 0.5, 0.1));
+      border-radius: 10px;
+      overflow: hidden;
+      
+      .auth-header {
+        color: themed("textColor");
+        border-bottom: 1px solid themed("border");
+      }
+      
+      input {
+        background-color: themed("inputBg");
+        border: 1px solid themed("border");
+        color: themed("textColor");
+        
+        &::placeholder {
+          color: themed("textColorSoft");
+        }
+        
+        &:focus {
+          border-color: themed("primary");
+        }
+      }
+      
+      button {
+        background-color: themed("primary");
+        
+        &:hover {
+          background-color: darken(themed("primary"), 10%);
+        }
+      }
+      
+      a {
+        color: themed("primary");
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Custom scrollbar for the dark theme
+.theme-dark {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #444 #222;
+    
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: #222;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: #444;
+      border-radius: 4px;
+      border: 2px solid #222;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
+    }
+  }
+}

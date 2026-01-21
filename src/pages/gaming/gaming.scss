@@ -1,0 +1,1119 @@
+@import "../../style.scss";
+
+.gaming {
+  @include themify($themes) {
+    padding: 20px 70px;
+
+    @media (max-width: 768px) {
+      padding: 15px 20px;
+    }
+
+    .container {
+      .gaming-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        
+        @media (max-width: 768px) {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 15px;
+        }
+        
+      .title {
+        color: themed("textColor");
+          font-size: 28px;
+          font-weight: 600;
+        }
+        
+        .header-actions {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          
+          .search-box {
+            display: flex;
+            align-items: center;
+            background-color: themed("bgSoft");
+            border-radius: 8px;
+            padding: 8px 15px;
+            width: 300px;
+            
+            svg {
+              color: themed("textColorSoft");
+              margin-right: 10px;
+            }
+            
+            input {
+              background-color: transparent;
+              border: none;
+              color: themed("textColor");
+              outline: none;
+              width: 100%;
+              
+              &::placeholder {
+                color: themed("textColorSoft");
+              }
+            }
+          }
+          
+          .notification-btn {
+            background-color: themed("bgSoft");
+            border: none;
+            border-radius: 50%;
+            color: themed("textColorSoft");
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            width: 40px;
+            transition: background-color 0.3s;
+            
+            &:hover {
+              background-color: themed("bgSoftActive");
+              color: themed("primary");
+            }
+          }
+        }
+      }
+      
+      .gaming-categories {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        
+        &::-webkit-scrollbar {
+          height: 4px;
+        }
+        
+        &::-webkit-scrollbar-track {
+          background: themed("bgSoft");
+          border-radius: 4px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          background: themed("textColorSoft");
+          border-radius: 4px;
+        }
+        
+        .category-btn {
+          background-color: themed("bgSoft");
+          border: none;
+          border-radius: 8px;
+          color: themed("textColor");
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          font-size: 14px;
+          gap: 8px;
+          padding: 10px 15px;
+          transition: background-color 0.3s;
+          white-space: nowrap;
+          
+          svg {
+            color: themed("textColorSoft");
+            font-size: 18px;
+          }
+          
+          &:hover {
+            background-color: themed("hoverColor");
+          }
+          
+          &.active {
+            background-color: themed("bgSoftActive");
+            
+            svg, span {
+              color: themed("primary");
+              font-weight: 500;
+            }
+          }
+        }
+      }
+      
+      .gaming-content {
+        display: flex;
+        gap: 30px;
+        
+        @media (max-width: 1200px) {
+          flex-direction: column;
+        }
+        
+        .gaming-main {
+          flex: 3;
+          
+          .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            
+            h2 {
+              color: themed("textColor");
+              font-size: 22px;
+              font-weight: 600;
+            }
+            
+            .view-all-btn, .create-team-btn {
+              background-color: transparent;
+              border: 1px solid themed("border");
+              border-radius: 8px;
+              color: themed("textColor");
+              cursor: pointer;
+              font-size: 14px;
+              padding: 8px 15px;
+              transition: background-color 0.3s;
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              
+              &:hover {
+                background-color: themed("hoverColor");
+              }
+            }
+            
+            .create-team-btn {
+              background-color: themed("primary");
+              border: none;
+              color: white;
+              
+              svg {
+                font-size: 18px;
+              }
+              
+              &:hover {
+                opacity: 0.9;
+              }
+            }
+          }
+          
+          .games-section {
+            margin-bottom: 30px;
+            
+            .games-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+              gap: 20px;
+              
+              .game-card {
+                background-color: themed("bgSoft");
+                border-radius: 12px;
+                overflow: hidden;
+                transition: transform 0.3s, box-shadow 0.3s;
+                
+                &:hover {
+                  transform: translateY(-5px);
+                  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                }
+                
+                .game-image {
+                  position: relative;
+                  height: 180px;
+                  
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                  }
+                  
+                  .popular-badge {
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    background-color: rgba(231, 76, 60, 0.9);
+                    border-radius: 4px;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    font-size: 12px;
+                    font-weight: 500;
+                    gap: 5px;
+                    padding: 4px 8px;
+                    
+                    svg {
+                      font-size: 14px;
+                    }
+                  }
+                  
+                  .game-actions {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 0;
+                    right: 0;
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                    padding: 0 10px;
+                    
+                    .action-btn {
+                      background-color: rgba(255, 255, 255, 0.9);
+                      border: none;
+                      border-radius: 6px;
+                      color: #333;
+                      cursor: pointer;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 14px;
+                      font-weight: 500;
+                      gap: 5px;
+                      padding: 8px 15px;
+                      transition: background-color 0.3s, transform 0.2s;
+                      
+                      svg {
+                        font-size: 16px;
+                      }
+                      
+                      &:hover {
+                        background-color: white;
+                        transform: scale(1.05);
+                      }
+                      
+                      &.play {
+                        background-color: rgba(52, 152, 219, 0.9);
+                        color: white;
+                        flex: 3;
+                        
+                        &:hover {
+                          background-color: rgb(52, 152, 219);
+                        }
+                      }
+                      
+                      &.favorite {
+                        flex: 1;
+                        
+                        &.active {
+                          color: #f1c40f;
+                        }
+                      }
+                    }
+                  }
+                }
+                
+                .game-info {
+                  padding: 15px;
+                  
+                  .game-category {
+                    display: flex;
+                    align-items: center;
+                    color: themed("textColorSoft");
+                    font-size: 13px;
+                    gap: 5px;
+                    margin-bottom: 8px;
+                    
+                    svg {
+                      color: themed("primary");
+                      font-size: 16px;
+                    }
+                  }
+                  
+                  .game-title {
+                    color: themed("textColor");
+                    font-size: 18px;
+                    font-weight: 600;
+                    margin-bottom: 8px;
+                  }
+                  
+                  .game-description {
+                    color: themed("textColorSoft");
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    line-height: 1.4;
+                  }
+                  
+                  .game-stats {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                    
+                    .stat {
+                      display: flex;
+                      align-items: center;
+                      color: themed("textColor");
+                      font-size: 13px;
+                      gap: 5px;
+                      
+                      svg {
+                        color: themed("textColorSoft");
+                        font-size: 16px;
+                      }
+                      
+                      &.difficulty {
+                        margin-left: auto;
+                        
+                        .difficulty-level {
+                          border-radius: 4px;
+                          color: white;
+                          font-size: 12px;
+                          font-weight: 500;
+                          padding: 3px 8px;
+                          
+                          &.easy {
+                            background-color: #2ecc71;
+                          }
+                          
+                          &.medium {
+                            background-color: #f39c12;
+                          }
+                          
+                          &.hard {
+                            background-color: #e74c3c;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          
+          .tournaments-section {
+            margin-bottom: 30px;
+            
+            .tournaments-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+              gap: 20px;
+              
+              .tournament-card {
+                background-color: themed("bgSoft");
+                border-radius: 12px;
+                overflow: hidden;
+                transition: transform 0.3s, box-shadow 0.3s;
+                
+                &:hover {
+                  transform: translateY(-5px);
+                  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                }
+                
+                .tournament-image {
+                  position: relative;
+                  height: 160px;
+                  
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                  }
+                  
+                  .tournament-status {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    background-color: rgba(52, 152, 219, 0.9);
+                    border-radius: 4px;
+                    color: white;
+                    font-size: 12px;
+                    font-weight: 500;
+                    padding: 4px 8px;
+                  }
+                }
+                
+                .tournament-info {
+                  padding: 15px;
+                  
+                  .tournament-category {
+                    display: flex;
+                    align-items: center;
+                    color: themed("textColorSoft");
+                    font-size: 13px;
+                    gap: 5px;
+                    margin-bottom: 8px;
+                    
+                    svg {
+                      color: themed("primary");
+                      font-size: 16px;
+                    }
+                  }
+                  
+                  .tournament-title {
+                    color: themed("textColor");
+                    font-size: 18px;
+                    font-weight: 600;
+                    margin-bottom: 12px;
+                  }
+                  
+                  .tournament-details {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    margin-bottom: 15px;
+                    
+                    .detail {
+                      display: flex;
+                      align-items: center;
+                      color: themed("textColor");
+                      font-size: 13px;
+                      gap: 8px;
+                      
+                      svg {
+                        color: themed("textColorSoft");
+                        font-size: 16px;
+                      }
+                    }
+                  }
+                  
+                  .register-btn {
+                    background-color: themed("primary");
+                    border: none;
+                    border-radius: 6px;
+                    color: white;
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: 500;
+                    padding: 8px 15px;
+                    transition: opacity 0.3s;
+                    width: 100%;
+                    
+                    &:hover {
+                      opacity: 0.9;
+                    }
+                  }
+                }
+                
+                &.create-tournament {
+                  background-color: transparent;
+                  border: 2px dashed themed("border");
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  min-height: 325px;
+                  
+                  .create-content {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    padding: 20px;
+                    
+                    .create-icon {
+                      background-color: themed("bgSoftActive");
+                      border-radius: 50%;
+                      color: themed("primary");
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      height: 60px;
+                      width: 60px;
+                      margin-bottom: 15px;
+                      
+                      svg {
+                        font-size: 30px;
+                      }
+                    }
+                    
+                    h3 {
+                      color: themed("textColor");
+                      font-size: 18px;
+                      font-weight: 600;
+                      margin-bottom: 8px;
+                    }
+                    
+                    p {
+                      color: themed("textColorSoft");
+                      font-size: 14px;
+                      margin-bottom: 20px;
+                    }
+                    
+                    .create-btn {
+                      background-color: themed("primary");
+                      border: none;
+                      border-radius: 6px;
+                      color: white;
+                      cursor: pointer;
+                      font-size: 14px;
+                      font-weight: 500;
+                      padding: 8px 20px;
+                      transition: opacity 0.3s;
+                      
+                      &:hover {
+                        opacity: 0.9;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          
+          .fantasy-section {
+            margin-bottom: 30px;
+            
+            .fantasy-teams {
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+              gap: 20px;
+              
+              .team-card {
+                background-color: themed("bgSoft");
+                border-radius: 12px;
+        padding: 20px;
+                transition: transform 0.3s, box-shadow 0.3s;
+                
+                &:hover {
+                  transform: translateY(-5px);
+                  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                }
+                
+                .team-header {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 15px;
+                  
+                  .team-name {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    
+                    svg {
+                      color: themed("primary");
+                      font-size: 20px;
+                    }
+                    
+                    h3 {
+                      color: themed("textColor");
+                      font-size: 18px;
+                      font-weight: 600;
+                    }
+                  }
+                  
+                  .team-rank {
+                    background-color: themed("bgSoftActive");
+                    border-radius: 4px;
+                    color: themed("primary");
+                    font-size: 13px;
+                    font-weight: 500;
+                    padding: 4px 8px;
+                  }
+                }
+                
+                .team-stats {
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 15px;
+                  
+                  .stat {
+                    display: flex;
+                    align-items: center;
+                    color: themed("textColor");
+                    font-size: 14px;
+                    gap: 5px;
+                    
+                    svg {
+                      color: themed("textColorSoft");
+                      font-size: 16px;
+                    }
+                  }
+                }
+                
+                .team-match {
+                  background-color: themed("bg");
+                  border-radius: 6px;
+                  color: themed("textColor");
+                  font-size: 14px;
+                  margin-bottom: 15px;
+                  padding: 10px;
+                  text-align: center;
+                  
+                  span {
+                    font-weight: 500;
+                  }
+                }
+                
+                .team-actions {
+                  display: flex;
+                  gap: 10px;
+                  
+                  .team-btn {
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: 500;
+                    padding: 8px 15px;
+                    transition: opacity 0.3s;
+                    
+                    &.manage {
+                      background-color: themed("primary");
+                      border: none;
+                      color: white;
+                      flex: 3;
+                      
+                      &:hover {
+                        opacity: 0.9;
+                      }
+                    }
+                    
+                    &.invite {
+                      background-color: transparent;
+                      border: 1px solid themed("border");
+                      color: themed("textColor");
+                      display: flex;
+                      align-items: center;
+                      flex: 2;
+                      gap: 5px;
+                      justify-content: center;
+                      
+                      svg {
+                        font-size: 16px;
+                      }
+                      
+                      &:hover {
+                        background-color: themed("hoverColor");
+                      }
+                    }
+                  }
+                }
+                
+                &.create-team {
+                  background-color: transparent;
+                  border: 2px dashed themed("border");
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  
+                  .create-content {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    
+                    .create-icon {
+                      background-color: themed("bgSoftActive");
+                      border-radius: 50%;
+                      color: themed("primary");
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      height: 50px;
+                      width: 50px;
+                      margin-bottom: 15px;
+                      
+                      svg {
+                        font-size: 25px;
+                      }
+                    }
+                    
+                    h3 {
+                      color: themed("textColor");
+                      font-size: 18px;
+                      font-weight: 600;
+                      margin-bottom: 8px;
+                    }
+                    
+                    p {
+                      color: themed("textColorSoft");
+                      font-size: 14px;
+                      margin-bottom: 15px;
+                    }
+                    
+                    .create-btn {
+                      background-color: themed("primary");
+                      border: none;
+                      border-radius: 6px;
+                      color: white;
+                      cursor: pointer;
+                      font-size: 14px;
+                      font-weight: 500;
+                      padding: 8px 20px;
+                      transition: opacity 0.3s;
+                      
+                      &:hover {
+                        opacity: 0.9;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        
+        .gaming-sidebar {
+          flex: 1;
+          max-width: 320px;
+          
+          @media (max-width: 1200px) {
+            max-width: 100%;
+          }
+          
+          .leaderboard-section, 
+          .wins-section, 
+          .events-section,
+          .suggested-games {
+        background-color: themed("bgSoft");
+            border-radius: 12px;
+            margin-bottom: 25px;
+            padding: 20px;
+            
+            h3 {
+              color: themed("textColor");
+              font-size: 18px;
+              font-weight: 600;
+              margin-bottom: 15px;
+            }
+          }
+          
+          .leaderboard-section {
+            .leaderboard-card {
+              background-color: themed("bg");
+              border-radius: 8px;
+              margin-bottom: 15px;
+              overflow: hidden;
+              
+              &:last-child {
+                margin-bottom: 0;
+              }
+              
+              .leaderboard-header {
+                background-color: themed("bgSoftActive");
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 15px;
+                
+                h4 {
+                  color: themed("textColor");
+                  font-size: 16px;
+                  font-weight: 600;
+                }
+                
+                svg {
+                  color: themed("primary");
+                  font-size: 20px;
+                }
+              }
+              
+              .leaderboard-list {
+                padding: 10px 0;
+                
+                .leaderboard-item {
+                  display: flex;
+                  align-items: center;
+                  padding: 8px 15px;
+                  transition: background-color 0.3s;
+                  
+                  &:hover {
+                    background-color: themed("hoverColor");
+                  }
+                  
+                  &.is-user {
+                    background-color: rgba(52, 152, 219, 0.1);
+                    font-weight: 500;
+                  }
+                  
+                  .player-rank {
+                    color: themed("textColorSoft");
+                    font-size: 14px;
+                    width: 40px;
+                  }
+                  
+                  .player-name {
+                    flex: 1;
+                    color: themed("textColor");
+                    font-size: 14px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    
+                    .user-icon {
+                      color: themed("primary");
+                      font-size: 16px;
+                    }
+                    
+                    .crown-icon {
+                      color: #f1c40f;
+                      font-size: 16px;
+                    }
+                  }
+                  
+                  .player-score {
+                    color: themed("textColor");
+                    font-size: 14px;
+                    font-weight: 600;
+                  }
+                }
+              }
+              
+              .view-full-btn {
+                background-color: transparent;
+                border: none;
+                border-top: 1px solid themed("border");
+                color: themed("primary");
+                cursor: pointer;
+                font-size: 14px;
+                padding: 12px;
+                text-align: center;
+                width: 100%;
+                transition: background-color 0.3s;
+                
+                &:hover {
+                  background-color: themed("hoverColor");
+                }
+              }
+            }
+          }
+          
+          .wins-section {
+            .wins-list {
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+              
+              .win-item {
+                background-color: themed("bg");
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                padding: 12px;
+                
+                .win-icon {
+                  background-color: rgba(46, 204, 113, 0.2);
+                  border-radius: 50%;
+                  color: #2ecc71;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: 40px;
+                  width: 40px;
+                  margin-right: 12px;
+                  
+                  svg {
+                    font-size: 20px;
+                  }
+                }
+                
+                .win-details {
+                  flex: 1;
+                  
+                  h4 {
+                    color: themed("textColor");
+                    font-size: 14px;
+                    font-weight: 600;
+                    margin-bottom: 4px;
+                  }
+                  
+                  .win-score {
+                    color: #2ecc71;
+                    font-size: 12px;
+                    font-weight: 500;
+                    margin-bottom: 2px;
+                  }
+                  
+                  .win-date {
+                    color: themed("textColorSoft");
+                    font-size: 12px;
+                  }
+                }
+                
+                .win-actions {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+                  
+                  .win-btn {
+                    background-color: transparent;
+                    border: 1px solid themed("border");
+                    border-radius: 4px;
+                    color: themed("textColor");
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    font-size: 12px;
+                    gap: 5px;
+                    padding: 4px 8px;
+                    transition: background-color 0.3s;
+                    
+                    svg {
+                      font-size: 14px;
+                    }
+                    
+                    &:hover {
+                      background-color: themed("hoverColor");
+                    }
+                    
+                    &.share {
+                      color: themed("primary");
+                    }
+                  }
+                }
+              }
+              
+              .view-all-wins-btn {
+                background-color: transparent;
+                border: 1px solid themed("border");
+                border-radius: 8px;
+                color: themed("textColor");
+                cursor: pointer;
+                font-size: 14px;
+                margin-top: 5px;
+                padding: 8px;
+                text-align: center;
+                transition: background-color 0.3s;
+                
+                &:hover {
+                  background-color: themed("hoverColor");
+                }
+              }
+            }
+          }
+          
+          .events-section {
+            .events-list {
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+              
+              .event-item {
+                background-color: themed("bg");
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                padding: 12px;
+                
+                .event-type {
+                  background-color: themed("bgSoftActive");
+                  border-radius: 8px;
+                  color: themed("primary");
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: 40px;
+                  width: 40px;
+                  margin-right: 12px;
+                  
+                  svg {
+                    font-size: 20px;
+                  }
+                }
+                
+                .event-info {
+                  flex: 1;
+                  
+                  h4 {
+                    color: themed("textColor");
+                    font-size: 14px;
+                    font-weight: 600;
+                    margin-bottom: 4px;
+                  }
+                  
+                  .event-date {
+                    color: themed("textColorSoft");
+                    font-size: 12px;
+                    margin-bottom: 5px;
+                  }
+                  
+                  .event-type-badge {
+                    background-color: themed("bgSoftActive");
+                    border-radius: 4px;
+                    color: themed("primary");
+                    display: inline-block;
+                    font-size: 11px;
+                    padding: 3px 6px;
+                  }
+                }
+                
+                .remind-btn {
+                  background-color: transparent;
+                  border: none;
+                  color: themed("textColorSoft");
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: 30px;
+                  width: 30px;
+                  transition: color 0.3s;
+                  
+                  &:hover {
+                    color: themed("primary");
+                  }
+                  
+                  svg {
+                    font-size: 18px;
+                  }
+                }
+              }
+              
+              .view-calendar-btn {
+                background-color: transparent;
+                border: 1px solid themed("border");
+                border-radius: 8px;
+                color: themed("textColor");
+                cursor: pointer;
+                font-size: 14px;
+                margin-top: 5px;
+                padding: 8px;
+                text-align: center;
+                transition: background-color 0.3s;
+                
+                &:hover {
+                  background-color: themed("hoverColor");
+                }
+              }
+            }
+          }
+          
+          .suggested-games {
+            .suggested-list {
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+              
+              .suggested-item {
+                background-color: themed("bg");
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                padding: 12px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                
+                &:hover {
+                  background-color: themed("hoverColor");
+                }
+                
+                .suggested-icon {
+                  background-color: themed("bgSoftActive");
+                  border-radius: 8px;
+                  color: themed("primary");
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: 40px;
+                  width: 40px;
+                  margin-right: 12px;
+                  
+                  svg {
+                    font-size: 20px;
+                  }
+                }
+                
+                .suggested-info {
+                  flex: 1;
+                  
+                  h4 {
+        color: themed("textColor");
+                    font-size: 14px;
+                    font-weight: 600;
+                    margin-bottom: 4px;
+                  }
+                  
+                  p {
+                    color: themed("textColorSoft");
+                    font-size: 12px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+} 

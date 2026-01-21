@@ -1,0 +1,358 @@
+@import "../../style.scss";
+
+.messages {
+  @include themify($themes) {
+    display: flex;
+    height: calc(100vh - 70px);
+    overflow: hidden;
+    
+    .contacts-container {
+      flex: 1;
+      max-width: 350px;
+      border-right: 1px solid themed("border");
+      display: flex;
+      flex-direction: column;
+      background-color: themed("bg");
+      
+      .contacts-header {
+        padding: 20px;
+        border-bottom: 1px solid themed("border");
+        
+        h2 {
+          color: themed("textColor");
+          margin-bottom: 15px;
+        }
+        
+        .search-messages {
+          display: flex;
+          align-items: center;
+          background-color: themed("bgSoft");
+          border-radius: 20px;
+          padding: 5px 10px;
+          
+          svg {
+            color: themed("textColorSoft");
+            margin-right: 10px;
+          }
+          
+          input {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            width: 100%;
+            color: themed("textColor");
+            
+            &::placeholder {
+              color: themed("textColorSoft");
+            }
+          }
+        }
+      }
+      
+      .contacts-list {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px 0;
+        
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          background-color: themed("textColorSoft");
+          border-radius: 3px;
+        }
+        
+        .contact-item {
+          display: flex;
+          align-items: center;
+          padding: 10px 20px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+          
+          &:hover {
+            background-color: themed("bgSoft");
+          }
+          
+          &.active {
+            background-color: themed("bgSoft");
+          }
+          
+          .contact-avatar {
+            position: relative;
+            margin-right: 15px;
+            
+            img {
+              width: 56px;
+              height: 56px;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+            
+            .online-indicator {
+              width: 14px;
+              height: 14px;
+              background-color: #44b700;
+              border-radius: 50%;
+              border: 2px solid themed("bg");
+              position: absolute;
+              bottom: 0;
+              right: 0;
+            }
+          }
+          
+          .contact-info {
+            flex: 1;
+            overflow: hidden;
+            
+            .contact-name {
+              color: themed("textColor");
+              font-weight: 500;
+              margin-bottom: 5px;
+            }
+            
+            .contact-last-message {
+              color: themed("textColorSoft");
+              font-size: 14px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: 150px;
+            }
+          }
+          
+          .contact-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            
+            .contact-time {
+              color: themed("textColorSoft");
+              font-size: 12px;
+              margin-bottom: 5px;
+            }
+            
+            .unread-badge {
+              background-color: #0095f6;
+              color: white;
+              font-size: 12px;
+              border-radius: 50%;
+              width: 20px;
+              height: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+        }
+        
+        .loading {
+          text-align: center;
+          padding: 15px;
+          color: themed("textColorSoft");
+        }
+      }
+    }
+    
+    .chat-container {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      background-color: themed("bg");
+      
+      .chat-header {
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid themed("border");
+        
+        .chat-contact {
+          display: flex;
+          align-items: center;
+          
+          img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+          }
+          
+          h3 {
+            color: themed("textColor");
+            margin-bottom: 5px;
+          }
+          
+          .status {
+            color: themed("textColorSoft");
+            font-size: 13px;
+          }
+        }
+        
+        .chat-actions {
+          svg {
+            color: themed("textColorSoft");
+            cursor: pointer;
+            font-size: 24px;
+            
+            &:hover {
+              color: themed("textColor");
+            }
+          }
+        }
+      }
+      
+      .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        background-color: themed("bgSoft");
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          background-color: themed("textColorSoft");
+          border-radius: 3px;
+        }
+        
+        .message {
+          display: flex;
+          max-width: 65%;
+          
+          &.sent {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+            
+            .message-content {
+              background-color: #0095f6;
+              color: white;
+              border-radius: 18px 18px 4px 18px;
+              
+              .message-time {
+                color: rgba(255, 255, 255, 0.7);
+              }
+            }
+          }
+          
+          &.received {
+            align-self: flex-start;
+            
+            .message-content {
+              background-color: themed("bgSofter");
+              color: themed("textColor");
+              border-radius: 18px 18px 18px 4px;
+            }
+          }
+          
+          .message-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+          }
+          
+          .message-content {
+            padding: 10px 15px;
+            
+            .message-text {
+              margin-bottom: 5px;
+              word-break: break-word;
+            }
+            
+            .message-time {
+              font-size: 11px;
+              color: themed("textColorSoft");
+              text-align: right;
+            }
+          }
+        }
+      }
+      
+      .chat-input {
+        display: flex;
+        align-items: center;
+        padding: 15px 20px;
+        border-top: 1px solid themed("border");
+        
+        .chat-icon {
+          color: themed("textColorSoft");
+          font-size: 24px;
+          cursor: pointer;
+          margin-right: 15px;
+          
+          &:hover {
+            color: themed("textColor");
+          }
+        }
+        
+        textarea {
+          flex: 1;
+          resize: none;
+          border: none;
+          outline: none;
+          background-color: transparent;
+          padding: 10px 0;
+          max-height: 100px;
+          color: themed("textColor");
+          font-family: inherit;
+          
+          &::placeholder {
+            color: themed("textColorSoft");
+          }
+        }
+        
+        .send-icon {
+          color: #ccc;
+          font-size: 24px;
+          margin-left: 15px;
+          cursor: pointer;
+          
+          &.active {
+            color: #0095f6;
+          }
+        }
+      }
+      
+      .no-chat-selected {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: themed("bgSoft");
+        
+        .empty-state {
+          text-align: center;
+          
+          h2 {
+            color: themed("textColor");
+            margin-bottom: 10px;
+          }
+          
+          p {
+            color: themed("textColorSoft");
+          }
+        }
+      }
+    }
+    
+    @include mobile {
+      flex-direction: column;
+      
+      .contacts-container {
+        max-width: 100%;
+        height: 40%;
+      }
+      
+      .chat-container {
+        height: 60%;
+      }
+    }
+  }
+} 
